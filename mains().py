@@ -19,4 +19,14 @@ def main():
     for i in range(0,len(hash)):
         print(i ,".-" , hash[i],"\n")
 
+
+def main():
+    
+    val = True
+    while(val):
+        entrada = input("Ingrese palabra: ")
+        if entrada == 0:
+            break
+        writePass(entrada)
+
               
