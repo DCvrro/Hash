@@ -134,11 +134,8 @@ def fixArr():
 
 def main():
     val = True 
-    tmd5 = list()
-    tsha1 = list()
-    tsha256 = list()
-    tcarro = list()
     base = list()
+    tiempo = list()
     while(val):
         print("Bienvenido.")
         print("¿Cuantos datos del Rockyou quiere comparar?")
@@ -167,37 +164,40 @@ def main():
         elif(entrada == '5'):
             break
             
-        for palabras in base:
-        
         ########### MD5 ###########
-            inicio = time.time()
+        inicio = time.time()
+        for palabras in base:
             md5(palabras)
-            fin = time.time()
-            tmd5.append(fin-inicio)
-
-        ########### SHA1 ##########
-            inicio = time.time()
+        fin = time.time()
+        tiempo.append(fin- inicio)
+        
+        ########### SHA1 ###########
+        inicio = time.time()
+        for palabras in base:
             sha1(palabras)
-            fin = time.time()
-            tsha1.append(fin-inicio)
+        fin = time.time()
+        tiempo.append(fin- inicio)
         
-        ########### SHA256 ##########
-            inicio = time.time()
+        ########### SHA256 ###########
+        inicio = time.time()
+        for palabras in base:
             sha256(palabras)
-            fin = time.time()
-            tsha256.append(fin-inicio)
+        fin = time.time()
+        tiempo.append(fin- inicio)
         
-        ########### Carro ##########
-            inicio = time.time()
+        ########### CARRO ###########
+        inicio = time.time()
+        for palabras in base:
             encode(palabras)
-            fin = time.time()
-            tcarro.append(fin-inicio)
+        fin = time.time()
+        tiempo.append(fin- inicio)
 
+    
         print("Los tiempos para realizar el hash fueron los siguientes:")
-        print("MD5 :",tmd5)
-        print("SHA1 :",tsha1)
-        print("SHA256 :",tsha256)
-        print("Carro :",tcarro)
+        print("MD5 :",tiempo[0])
+        print("SHA1 :",tiempo[1])
+        print("SHA256 :",tiempo[2])
+        print("Carro :",tiempo[3])
 
 
 
