@@ -29,4 +29,18 @@ def main():
             break
         writePass(entrada)
 
+def main():
+    val = True
+    while(val):
+        entrada = input("Ingrese palabra: ")
+        if entrada == '0':
+            val = False 
+            break
+        writePass(entrada)
+
+    print("MD5:",md5('hola'))
+    print("SHA1:",sha1('hola'))
+    print("SHA256:",sha256('hola'))
+
+
               
