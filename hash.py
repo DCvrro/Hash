@@ -170,6 +170,7 @@ def main():
             md5(palabras)
         fin = time.time()
         tiempo.append(fin- inicio)
+        inicio = 0
         
         ########### SHA1 ###########
         inicio = time.time()
@@ -177,14 +178,16 @@ def main():
             sha1(palabras)
         fin = time.time()
         tiempo.append(fin- inicio)
-        
+        inicio = 0
+
         ########### SHA256 ###########
         inicio = time.time()
         for palabras in base:
             sha256(palabras)
         fin = time.time()
         tiempo.append(fin- inicio)
-        
+        inicio = 0
+
         ########### CARRO ###########
         inicio = time.time()
         for palabras in base:
@@ -194,10 +197,10 @@ def main():
 
     
         print("Los tiempos para realizar el hash fueron los siguientes:")
-        print("MD5 :",tiempo[0])
-        print("SHA1 :",tiempo[1])
-        print("SHA256 :",tiempo[2])
-        print("Carro :",tiempo[3])
+        print("MD5 :","{:.10f}".format(tiempo[0]))
+        print("SHA1 :","{:.10f}".format(tiempo[1]))
+        print("SHA256 :","{:.10f}".format(tiempo[2]))
+        print("Carro :","{:.10f}".format(tiempo[3]))
 
 
 
