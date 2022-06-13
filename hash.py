@@ -78,9 +78,6 @@ def encode(string):
         hash = hash + chr(cont)
     return hash
 
-
-
-
 def writePass(text): # type 0 if pass without has || type 1 for hash.  
     with open('Resultados.txt','a', encoding="utf-8") as arch:
         arch.write('Contraseña: '+ text + '\n')
@@ -88,16 +85,119 @@ def writePass(text): # type 0 if pass without has || type 1 for hash.
         arch.write('\t'+'Hash: '+ hash  + '\n' )
         arch.close()
 
+import math as mat
+
+def entropia(string):
+
+    size = int(len(string))
+    trpy = 0
+    base = 10
+    trpy = size * (mat.log(base,10))
+    return trpy
+
+import hashlib as hash
+import time
+
+def md5(string):
+    code  = hash.md5(string.encode())
+    ncode = code.hexdigest()
+    return ncode
+
+def sha1(string):
+    code = hash.sha1(string.encode())
+    ncode = code.hexdigest()
+    return ncode
+
+def sha256(string):
+    code = hash.sha256(string.encode())
+    ncode = code.hexdigest()
+    return ncode
+
+def leerDatos():
+
+    arc = open("Rockyou.txt")
+    lineas = arc.readlines()
+    datos = list()
+    
+    for lineas in lineas:
+        datos.append(lineas) 
+    return datos
+
+def fixArr():
+    data = leerDatos()
+
+    for i in range(0, len(data)):
+        data[i] = data[i].replace('\n','')
+    
+    return data
+
 
 def main():
-    
-    val = True
+    val = True 
+    tmd5 = list()
+    tsha1 = list()
+    tsha256 = list()
+    tcarro = list()
+    base = list()
     while(val):
-        entrada = input("Ingrese palabra: ")
-        if entrada == 0:
-            break
-        writePass(entrada)
+        print("Bienvenido.")
+        print("¿Cuantos datos del Rockyou quiere comparar?")
+        print("Ingrese la opcion que desea. (1 ,2 ,3, 4...)")
+        print("1.- 1 ")
+        print("2.- 10 ")
+        print("3.- 20 ")
+        print("4.- 50 ")
+        entrada = input("5.- Salir\n")
+        data = fixArr()
+        if(entrada == '1'):
+            base.append(data[0])
 
+        elif(entrada == '2' ):
+            for i in range(0,10):
+                base.append(data[i])
+
+        elif(entrada == '3' ):
+            for i in range(0,20):
+                base.append(data[i])
+
+        elif(entrada == '4' ):
+            for i in range(0,50):
+                base.append(data[i])
+
+        elif(entrada == '5'):
+            break
+            
+        for palabras in base:
+        
+        ########### MD5 ###########
+            inicio = time.time()
+            md5(palabras)
+            fin = time.time()
+            tmd5.append(fin-inicio)
+
+        ########### SHA1 ##########
+            inicio = time.time()
+            sha1(palabras)
+            fin = time.time()
+            tsha1.append(fin-inicio)
+        
+        ########### SHA256 ##########
+            inicio = time.time()
+            sha256(palabras)
+            fin = time.time()
+            tsha256.append(fin-inicio)
+        
+        ########### Carro ##########
+            inicio = time.time()
+            encode(palabras)
+            fin = time.time()
+            tcarro.append(fin-inicio)
+
+        print("Los tiempos para realizar el hash fueron los siguientes:")
+        print("MD5 :",tmd5)
+        print("SHA1 :",tsha1)
+        print("SHA256 :",tsha256)
+        print("Carro :",tcarro)
 
 
 
