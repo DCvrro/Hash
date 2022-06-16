@@ -87,11 +87,18 @@ def writePass(text): # type 0 if pass without has || type 1 for hash.
 
 import math as mat
 
-def entropia(string):
-
+def entropia(string,type):
     size = int(len(string))
     trpy = 0
-    base = 10
+    base = 0
+    if(type == 'md5'):
+        base = 32
+    elif(type == 'sha1'):
+        base = 40
+    elif(type == 'sha256'):
+        base = 64
+    else:
+        base = 1114112
     trpy = size * (mat.log(base,10))
     return trpy
 
@@ -134,9 +141,12 @@ def fixArr():
 
 def main():
     val = True 
-    base = list()
-    tiempo = list()
+    entro = list()
+
     while(val):
+        base = list()
+        tiempo = list()
+
         print("Bienvenido.")
         print("¿Cuantos datos del Rockyou quiere comparar?")
         print("Ingrese la opcion que desea. (1 ,2 ,3, 4...)")
@@ -168,7 +178,9 @@ def main():
         inicio = time.time()
         for palabras in base:
             md5(palabras)
+            #print(md5(palabras))
         fin = time.time()
+
         tiempo.append(fin- inicio)
         inicio = 0
         
@@ -176,6 +188,7 @@ def main():
         inicio = time.time()
         for palabras in base:
             sha1(palabras)
+            #print(sha1(palabras))
         fin = time.time()
         tiempo.append(fin- inicio)
         inicio = 0
@@ -184,6 +197,7 @@ def main():
         inicio = time.time()
         for palabras in base:
             sha256(palabras)
+            #print(sha256(palabras))
         fin = time.time()
         tiempo.append(fin- inicio)
         inicio = 0
@@ -192,16 +206,27 @@ def main():
         inicio = time.time()
         for palabras in base:
             encode(palabras)
+            #print(encode(palabras))
         fin = time.time()
         tiempo.append(fin- inicio)
 
-    
+        entro.append(entropia(md5(base[0]),'md5'))
+        entro.append(entropia(sha1(base[0]),'sha1'))
+        entro.append(entropia(sha256(base[0]),'sha256'))
+        entro.append(entropia(encode(base[0]),'carro'))
+
+        print(base)
         print("Los tiempos para realizar el hash fueron los siguientes:")
         print("MD5 :","{:.10f}".format(tiempo[0]))
         print("SHA1 :","{:.10f}".format(tiempo[1]))
         print("SHA256 :","{:.10f}".format(tiempo[2]))
         print("Carro :","{:.10f}".format(tiempo[3]))
-
+        print("\nEntropias: ")
+        print("MD5 :",entro[0])
+        print("SHA1 :",entro[1])
+        print("SHA256 :",entro[2])
+        print("Carro's :",entro[3])
+        
 
 
 main()
