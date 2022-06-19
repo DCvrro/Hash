@@ -99,7 +99,7 @@ def entropia(string,type):
         base = 64
     else:
         base = 1114112
-    trpy = size * (mat.log(base,10))
+    trpy = size * (mat.log(base,2))
     return trpy
 
 import hashlib as hash
@@ -172,7 +172,7 @@ def main():
                 base.append(data[i])
 
         elif(entrada == '5'):
-            break
+            break    
             
         ########### MD5 ###########
         inicio = time.time()
@@ -188,7 +188,7 @@ def main():
         inicio = time.time()
         for palabras in base:
             sha1(palabras)
-            #print(sha1(palabras))
+            #print(sha1(palabras))\
         fin = time.time()
         tiempo.append(fin- inicio)
         inicio = 0
