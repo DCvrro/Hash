@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{gensymb}
+\usepackage{natbib}
+\usepackage{xurl}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{vmargin}
+\usepackage{ragged2e}
+\usepackage{multirow}
+\setmarginsrb{3 cm}{0 cm}{3 cm}{1.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
+\begin{document}
+
+\begin{center}
+    \textbf{ANÁLISIS TIEMPO}
+\end{center}
+En el presente documento, se mostraran los tiempos obtenidos para el código realizado en el presente laboratorio, en conjunto con una comparación y análisis correspondiente.
+\\\\
+Es importante saber que los tiempos obtenidos, son afectados considerablemente por el hardware con el cual fue compilado el código, debido a que para obtener estos resultados, se necesita considerablemente del uso de un procesador. \\\\
+En este caso, el procesador y el hardware relevante utilizado utilizado fue el siguiente:
+\begin{itemize}
+    \item i5 9400 F
+    \item 16 GB Ram 3000 Hz
+\end{itemize}
+
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{| c | c | c | c | c | }
+            \hline
+            \multicolumn{5}{ |c| }{Tiempos(s)} \\ \hline
+            Palabras & MD5  & SHA1 & SHA256 & Carro \\ \hline
+            1 &  0.0 & 0.0 & 0.0 & 0.0  \\ \hline
+            10 & 0.0 & 0.0 & 0.0 & $101x10{^-5}$\\ \hline
+            20 & 0.0 & 0.0 & 0.0 & $299x10{^-5}$\\ \hline
+            50 & 0.0 & 0.0 & 0.0 & $498x10{^-5}$\\ \hline
+        \end{tabular}
+        \caption{Tabla de tiempos}
+    \end{center}
+\end{table}
+Los resultados observados en la tabla, fueron analizados hasta con 20 decimales para ver si era posible ver algún cambio y no mostrar un ''cero perfecto''. Pero lamentablemente, las funciones que se utilizaron, provenientes de la librería de time en python, deben de estar optimizadas a gran nivel, además, de que deben de funcionar mediante cálculos matemáticos que agilizan el proceso. \\\\ 
+Por otro lado, para calcular el hash creado, se utilizaron cálculos matemáticos pero no es posible garantizar un rendimiento óptimo en su totalidad.
+\begin{center}
+    \textbf{ANÁLISIS DE ENTROPÍA}
+\end{center}
+
+Para poder ver la robustez de una contraseña según el abecedario y el largo que esta contenga es necesario calcular la entropía, la cual se calcula con la siguiente ecuación.
+\begin{equation}
+    H = L * \log_{2}(W)
+\end{equation}
+En donde, W será la cantidad de caracteres que posee la base a utilizar y L el largo de la contraseña. 
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{| c | c | c |}
+            \hline
+            \multicolumn{3}{ |c| }{Entropía} \\ \hline
+            Encriptado & Base & Entropía \\ \hline
+            MD5 & 32 & 160   \\ \hline
+            SHA1& 40 & 213 \\ \hline
+            SHA256 & 64 & 384 \\ \hline
+            Carro & 1.114.112 & 1104 \\ \hline
+        \end{tabular}
+        \caption{Tabla de Entropía}
+    \end{center}
+\end{table}
+Los valores de la entropía variaron considerablemente según el largo del a base a utilizar, las bases utilizadas están en la tabla publicada anteriormente, y mientras mayor sea el resultado de la entropía, significará que la contraseña es mas robusta.
+
+\end{document}
